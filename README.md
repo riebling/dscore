@@ -84,6 +84,24 @@ which will calculate and report the following metrics:
 - mutual information in bits (MI)
 - normalized mutual information (NMI)
 
+In this VM, as a simple selftest:
+
+    ~/anaconda/bin/python score.py Phil_Crane.rttm Phil_Crane_sys.rttm
+
+should produce the output:
+
+```
+DER: 42.30
+B-cubed precision: 0.98
+B-cubed recall: 0.67
+B-cubed F1: 0.80
+GKT(ref, sys): 0.60
+GKT(sys, ref): 0.96
+H(ref|sys): 0.10
+MI: 1.68
+NMI: 0.79
+```
+
  For additional details consult the docstring of ``score.py``.
 
 
