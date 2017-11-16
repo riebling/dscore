@@ -252,7 +252,7 @@ def score(ref_rttm_fn, sys_rttm_fn, collar=0.250, ignore_overlaps=True,
     nmi : float
         Normalized mutual information.
     """
-    der = metrics.der(ref_rttm_fn, sys_rttm_fn)
+    der = metrics.der(ref_rttm_fn, sys_rttm_fn, collar=collar)
     ref_labels, sys_labels = rttms_to_frames(ref_rttm_fn, sys_rttm_fn, step)
     cm, _, _ = metrics.contingency_matrix(ref_labels, sys_labels)
     bcubed_precision, bcubed_recall, bcubed_f1 = metrics.bcubed(
