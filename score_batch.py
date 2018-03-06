@@ -220,10 +220,14 @@ def parse_additional_columns(spec_str):
 
 
 def _get_fids(ref_rttm_dir, sys_rttm_dir):
-    ref_bns = [os.path.basename(fn)
-               for fn in glob.glob(os.path.join(ref_rttm_dir, '*.rttm'))]
-    sys_bns = [os.path.basename(fn)
-               for fn in glob.glob(os.path.join(sys_rttm_dir, '*.rttm'))]
+    ref_bns = []
+    for fn in glob.glob(os.path.join(ref_rttm_dir, '*.rttm')):
+        if not os.stat(fn).st_size == 0:
+            ref_bns.append(os.path.basename(fn))
+    sys_bns = []
+    for fn in glob.glob(os.path.join(sys_rttm_dir, '*.rttm')):
+        if not os.stat(fn).st_size == 0:
+            sys_bns.append(os.path.basename(fn))
     bns = set(ref_bns) & set(sys_bns)
     return sorted([bn.replace('.rttm', '') for bn in bns])
 
